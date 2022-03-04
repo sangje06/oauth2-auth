@@ -69,4 +69,11 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 		return jwtAccessTokenConverter;
 	}
 
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		security.tokenKeyAccess("permitAll()")
+		.checkTokenAccess("isAuthenticated()")
+		.allowFormAuthenticationForClients();
+	}
+
 }
